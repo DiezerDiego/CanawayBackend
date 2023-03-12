@@ -1,4 +1,4 @@
 # Configuration
 1. import database
-2. set option_value in wp_options table
-3. set database credential and url in wp-config.php
+2. set up option_value in the row siteurl and home in the wp_options table
+3. set up database credential and url in wp-config.php
