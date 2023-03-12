@@ -21,12 +21,17 @@ class UserService
             $random_character = $input[mt_rand(0, $input_length - 1)];
             $random_string .= $random_character;
         }
-        return $random_string;
+        return preg_replace('/\s+/', '_',$random_string);
     }
 
     function createUser()
     {
-        $this->user->setUsername($this->generateUserPassword());
+        if(str_contains($this->user->getEmail(),"@")){
+          $this->user->setUsername(explode("@",$this->user->getEmail())[0]);
+        }else{
+          $this->user->setUsername($this->generateUserPassword());
+        }
+
         $this->user->setPassword($this->generateUserPassword(8));
         wp_create_user($this->user->getUsername(), $this->user->getPassword(), $this->user->getEmail(), $this->user->getEnglish_level());
         $this->sendEmail($this->user->getEmail(),"Welcome to Canady Academy",
