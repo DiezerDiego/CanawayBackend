@@ -2247,7 +2247,7 @@ function wp_insert_user( $userdata ) {
 	 * @param string $last_name The user's last name.
 	 */
 	$meta['last_name'] = apply_filters( 'pre_user_last_name', $last_name );
-	
+
 	if ( empty( $userdata['display_name'] ) ) {
 		if ( $update ) {
 			$display_name = $user_login;
@@ -2280,6 +2280,7 @@ function wp_insert_user( $userdata ) {
 
 	$description = empty( $userdata['description'] ) ? '' : $userdata['description'];
 	$user_english_level=$userdata["user_english_level"];
+  $extra_column=$userdata["extra_column"];
 	/**
 	 * Filters a user's description before the user is created or updated.
 	 *
@@ -2304,7 +2305,7 @@ function wp_insert_user( $userdata ) {
 
 	$meta['locale'] = isset( $userdata['locale'] ) ? $userdata['locale'] : '';
 
-	$compacted = compact( 'user_pass', 'user_nicename', 'user_email', 'user_url', 'user_registered', 'user_activation_key', 'display_name',"user_english_level" );
+	$compacted = compact( 'user_pass', 'user_nicename', 'user_email', 'user_url', 'user_registered', 'user_activation_key', 'display_name',"user_english_level","extra_column");
 	$data      = wp_unslash( $compacted );
 
 	if ( ! $update ) {
@@ -2738,12 +2739,13 @@ All at ###SITENAME###
  * @return int|WP_Error The newly created user's ID or a WP_Error object if the user could not
  *                      be created.
  */
-function wp_create_user( $username, $password, $email = '',$english_level= '' ) {
+function wp_create_user( $username, $password, $email = '',$english_level= '',$extra_column='') {
 	$user_login = wp_slash( $username );
 	$user_email = wp_slash( $email );
 	$user_pass  = $password;
 	$user_english_level=$english_level;
-	$userdata = compact( 'user_login', 'user_email', 'user_pass','user_english_level' );
+  $extra_column=$extra_column;
+	$userdata = compact( 'user_login', 'user_email', 'user_pass','user_english_level' ,'extra_column');
 	return wp_insert_user( $userdata );
 }
 
