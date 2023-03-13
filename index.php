@@ -1,7 +1,11 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Origin: *');
+
+header('Access-Control-Allow-Methods: OPTIONS,POST');
+
 header("Access-Control-Allow-Headers: *");
+
+
 /**
  * Front to the WordPress application. This file doesn't do anything, but loads
  * wp-blog-header.php which does and tells WordPress to load the theme.
