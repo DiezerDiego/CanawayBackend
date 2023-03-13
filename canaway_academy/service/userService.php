@@ -5,11 +5,11 @@ require_once(__DIR__."/../../wp-load.php");
 class UserService
 {
     private $user;
-     function __construct($name, $email, $english_level)
+     function __construct($name, $email, $english_level,$extra_column)
     {
 
 
-        $this->user=new User($name,$email,$english_level);
+        $this->user=new User($name,$email,$english_level,null,null,$extra_column);
 
     }
     function generateUserPassword($strength = 4)
@@ -33,7 +33,7 @@ class UserService
         }
 
         $this->user->setPassword($this->generateUserPassword(8));
-        wp_create_user($this->user->getUsername(), $this->user->getPassword(), $this->user->getEmail(), $this->user->getEnglish_level());
+        wp_create_user($this->user->getUsername(), $this->user->getPassword(), $this->user->getEmail(), $this->user->getEnglish_level(),$this->user->getExtra_column());
         $this->sendEmail($this->user->getEmail(),"Welcome to Canady Academy",
         "Welcome! Your English level is:  <b>".$this->user->getEnglish_level()."</b>   Access your account here:  <b>".$_SERVER['SERVER_NAME']."/wp-admin"."</b>   and use these credentials:     Username:  <b>".$this->user->getUsername()."</b>     Password:  <b>".$this->user->getPassword()."</b> ");
     }
