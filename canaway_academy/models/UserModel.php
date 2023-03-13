@@ -7,19 +7,21 @@ class User
     private $password;
     private $email;
     private $english_level;
-    function __construct($name, $email, $english_level,$username=null,$password=null)
+    private $extra_column;
+    function __construct($name, $email, $english_level,$username=null,$password=null,$extra_column)
     {
         $this->name = $name;
         $this->email = $email;
         $this->english_level = $english_level;
+        $this->extra_column=$extra_column;
         $this->username = $username;
         $this->password = $password;
     }
-   
+
 
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -29,7 +31,7 @@ class User
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -39,7 +41,7 @@ class User
 
     /**
      * Get the value of username
-     */ 
+     */
     public function getUsername()
     {
         return $this->username;
@@ -49,7 +51,7 @@ class User
      * Set the value of username
      *
      * @return  self
-     */ 
+     */
     public function setUsername($username)
     {
         $this->username = $username;
@@ -59,7 +61,7 @@ class User
 
     /**
      * Get the value of password
-     */ 
+     */
     public function getPassword()
     {
         return $this->password;
@@ -69,7 +71,7 @@ class User
      * Set the value of password
      *
      * @return  self
-     */ 
+     */
     public function setPassword($password)
     {
         $this->password = $password;
@@ -79,7 +81,7 @@ class User
 
     /**
      * Get the value of email
-     */ 
+     */
     public function getEmail()
     {
         return $this->email;
@@ -89,7 +91,7 @@ class User
      * Set the value of email
      *
      * @return  self
-     */ 
+     */
     public function setEmail($email)
     {
         $this->email = $email;
@@ -99,7 +101,7 @@ class User
 
     /**
      * Get the value of english_level
-     */ 
+     */
     public function getEnglish_level()
     {
         return $this->english_level;
@@ -109,10 +111,30 @@ class User
      * Set the value of english_level
      *
      * @return  self
-     */ 
+     */
     public function setEnglish_level($english_level)
     {
         $this->english_level = $english_level;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of extra_column
+     */
+    public function getExtra_column()
+    {
+        return $this->extra_column;
+    }
+
+    /**
+     * Set the value of extra_column
+     *
+     * @return  self
+     */
+    public function setExtra_column($extra_column)
+    {
+        $this->extra_column = $extra_column;
 
         return $this;
     }
